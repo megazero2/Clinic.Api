@@ -82,3 +82,24 @@ and keep:
 ```text
 Server=(localdb)\MSSQLLocalDB;Database=ClinicDb;Trusted_Connection=True;TrustServerCertificate=True
 ```
+
+## Database
+
+The SQL Server LocalDB database is:
+
+```text
+ClinicDb
+```
+
+To create or update the database from migrations:
+
+```powershell
+dotnet tool restore
+dotnet tool run dotnet-ef database update --project src/Clinic.Api/Clinic.Api.csproj --context ClinicDbContext
+```
+
+To regenerate the idempotent SQL script:
+
+```powershell
+dotnet tool run dotnet-ef migrations script --idempotent --project src/Clinic.Api/Clinic.Api.csproj --context ClinicDbContext --output database/scripts/clinic.sql
+```
